@@ -35,9 +35,10 @@ class _AnimatedCounterState extends State<AnimatedCounter>
   void initState() {
     super.initState();
     _controller = AnimationController(vsync: this, duration: widget.duration);
-    _animation = IntTween(begin: 0, end: widget.targetValue).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
-    );
+    _animation = IntTween(
+      begin: 0,
+      end: widget.targetValue,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
   }
 
   @override
@@ -68,7 +69,8 @@ class _AnimatedCounterState extends State<AnimatedCounter>
         if (info.visibleFraction > 0.6) _triggerAnimation();
       },
       child: Semantics(
-        label: '${widget.prefix}${widget.targetValue}${widget.suffix} ${widget.label}',
+        label:
+            '${widget.prefix}${widget.targetValue}${widget.suffix} ${widget.label}',
         child: AnimatedBuilder(
           animation: _animation,
           builder: (context, _) {
@@ -83,7 +85,9 @@ class _AnimatedCounterState extends State<AnimatedCounter>
                 Text(
                   widget.label,
                   style: AppTextStyles.caption(context).copyWith(
-                    color: context.theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                    color: context.theme.colorScheme.onSurface.withValues(
+                      alpha: 0.6,
+                    ),
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -95,4 +99,3 @@ class _AnimatedCounterState extends State<AnimatedCounter>
     );
   }
 }
-

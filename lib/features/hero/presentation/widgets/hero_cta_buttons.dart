@@ -32,16 +32,10 @@ class HeroCtaButtons extends StatelessWidget {
     ];
 
     if (isMobile) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: buttons,
-      );
+      return Column(mainAxisSize: MainAxisSize.min, children: buttons);
     }
 
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: buttons,
-    );
+    return Row(mainAxisSize: MainAxisSize.min, children: buttons);
   }
 
   Future<void> _downloadResume() async {
@@ -51,4 +45,3 @@ class HeroCtaButtons extends StatelessWidget {
     }
   }
 }
-

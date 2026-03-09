@@ -32,17 +32,17 @@ class HeroSection extends StatelessWidget {
                   children: [
                     Text(
                       AppStrings.heroName,
-                      style: AppTextStyles.display(context).copyWith(
-                        color: context.accent.accent,
-                      ),
+                      style: AppTextStyles.display(
+                        context,
+                      ).copyWith(color: context.accent.accent),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 8),
                     Text(
                       'Designing scalable architectures.\nEngineering backend-authoritative systems.',
-                      style: AppTextStyles.body(context).copyWith(
-                        color: AppColors.textSecondary,
-                      ),
+                      style: AppTextStyles.body(
+                        context,
+                      ).copyWith(color: AppColors.textSecondary),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 24),
@@ -59,5 +59,3 @@ class HeroSection extends StatelessWidget {
     );
   }
 }
-
-

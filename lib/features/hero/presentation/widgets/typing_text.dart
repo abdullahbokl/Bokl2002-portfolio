@@ -26,12 +26,9 @@ class _TypingTextState extends State<TypingText> {
   @override
   void initState() {
     super.initState();
-    _cursorTimer = Timer.periodic(
-      const Duration(milliseconds: 500),
-      (_) {
-        if (mounted) setState(() => _cursorVisible = !_cursorVisible);
-      },
-    );
+    _cursorTimer = Timer.periodic(const Duration(milliseconds: 500), (_) {
+      if (mounted) setState(() => _cursorVisible = !_cursorVisible);
+    });
     _startTyping();
   }
 
@@ -43,8 +40,10 @@ class _TypingTextState extends State<TypingText> {
         _typingTimer = Timer(const Duration(milliseconds: 30), () {
           if (!mounted) return;
           setState(() {
-            _displayedText =
-                _displayedText.substring(0, _displayedText.length - 1);
+            _displayedText = _displayedText.substring(
+              0,
+              _displayedText.length - 1,
+            );
           });
           _startTyping();
         });
@@ -114,4 +113,3 @@ class _TypingTextState extends State<TypingText> {
     );
   }
 }
-

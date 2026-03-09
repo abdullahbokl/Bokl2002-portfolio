@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/extensions/context_extensions.dart';
 
+import 'particle.dart';
+import 'particle_painter.dart';
+
 /// Full-bleed animated particle background with connecting lines.
 class ParticleBackground extends StatefulWidget {
   const ParticleBackground({super.key});
@@ -15,7 +18,7 @@ class ParticleBackground extends StatefulWidget {
 class _ParticleBackgroundState extends State<ParticleBackground>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late List<_Particle> _particles;
+  late List<Particle> _particles;
   final _random = Random();
   bool _initialized = false;
 
@@ -36,11 +39,11 @@ class _ParticleBackgroundState extends State<ParticleBackground>
     final count = isMobile
         ? 20
         : isTablet
-            ? 30
-            : 50;
+        ? 30
+        : 50;
 
     _particles = List.generate(count, (_) {
-      return _Particle(
+      return Particle(
         x: _random.nextDouble() * size.width,
         y: _random.nextDouble() * size.height,
         radius: 1.0 + _random.nextDouble() * 2.0,
@@ -75,7 +78,7 @@ class _ParticleBackgroundState extends State<ParticleBackground>
               _updateParticles(size);
               return CustomPaint(
                 size: size,
-                painter: _ParticlePainter(
+                painter: ParticlePainter(
                   particles: _particles,
                   accentColor: context.accent.accent,
                 ),
@@ -99,67 +102,3 @@ class _ParticleBackgroundState extends State<ParticleBackground>
     }
   }
 }
-
-class _Particle {
-  _Particle({
-    required this.x,
-    required this.y,
-    required this.radius,
-    required this.opacity,
-    required this.dx,
-    required this.dy,
-  });
-
-  double x;
-  double y;
-  final double radius;
-  final double opacity;
-  final double dx;
-  final double dy;
-}
-
-class _ParticlePainter extends CustomPainter {
-  _ParticlePainter({required this.particles, required this.accentColor});
-
-  final List<_Particle> particles;
-  final Color accentColor;
-
-  static const _connectionDistance = 120.0;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    // Draw connection lines
-    final linePaint = Paint()..strokeWidth = 0.5;
-
-    for (int i = 0; i < particles.length; i++) {
-      for (int j = i + 1; j < particles.length; j++) {
-        final dx = particles[i].x - particles[j].x;
-        final dy = particles[i].y - particles[j].y;
-        final distance = sqrt(dx * dx + dy * dy);
-
-        if (distance < _connectionDistance) {
-          final opacity = (1 - distance / _connectionDistance) * 0.15;
-          linePaint.color = accentColor.withValues(alpha: opacity);
-          canvas.drawLine(
-            Offset(particles[i].x, particles[i].y),
-            Offset(particles[j].x, particles[j].y),
-            linePaint,
-          );
-        }
-      }
-    }
-
-    // Draw particles
-    for (final p in particles) {
-      final paint = Paint()
-        ..color = accentColor.withValues(alpha: p.opacity)
-        ..style = PaintingStyle.fill;
-      canvas.drawCircle(Offset(p.x, p.y), p.radius, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant _ParticlePainter oldDelegate) => true;
-}
-
-

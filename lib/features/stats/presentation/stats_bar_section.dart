@@ -33,20 +33,14 @@ class StatsBarSection extends StatelessWidget {
             indent: 40,
             endIndent: 40,
           )
-        : Container(
-            width: 1,
-            height: 40,
-            color: accent.withValues(alpha: 0.3),
-          );
+        : Container(width: 1, height: 40, color: accent.withValues(alpha: 0.3));
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
       decoration: BoxDecoration(
         color: AppColors.surfaceSecondary,
         border: Border.symmetric(
-          horizontal: BorderSide(
-            color: accent.withValues(alpha: 0.1),
-          ),
+          horizontal: BorderSide(color: accent.withValues(alpha: 0.1)),
         ),
       ),
       child: isMobile
@@ -76,5 +70,3 @@ class StatsBarSection extends StatelessWidget {
     return result;
   }
 }
-
-
