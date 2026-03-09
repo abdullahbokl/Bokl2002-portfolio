@@ -10,4 +10,3 @@ class CommandSubmitted extends TerminalEvent {
 }
 
 class TerminalCleared extends TerminalEvent {}
-

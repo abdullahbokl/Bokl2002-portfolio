@@ -64,7 +64,9 @@ class _TerminalInputState extends State<TerminalInput> {
             if (event.logicalKey == LogicalKeyboardKey.arrowUp &&
                 history.isNotEmpty) {
               final idx = bloc.state.historyIndex;
-              final newIdx = idx < 0 ? history.length - 1 : (idx - 1).clamp(0, history.length - 1);
+              final newIdx = idx < 0
+                  ? history.length - 1
+                  : (idx - 1).clamp(0, history.length - 1);
               _controller.text = history[newIdx];
               _controller.selection = TextSelection.fromPosition(
                 TextPosition(offset: _controller.text.length),
@@ -110,5 +112,3 @@ class _TerminalInputState extends State<TerminalInput> {
     );
   }
 }
-
-

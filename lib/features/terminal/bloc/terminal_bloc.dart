@@ -17,12 +17,12 @@ class TerminalBloc extends Bloc<TerminalEvent, TerminalState> {
 
   void _onOpened(TerminalOpened event, Emitter<TerminalState> emit) {
     if (state.isOpen) return;
-    emit(state.copyWith(
-      isOpen: true,
-      outputLines: [
-        const TerminalLine(text: AppStrings.terminalWelcome),
-      ],
-    ));
+    emit(
+      state.copyWith(
+        isOpen: true,
+        outputLines: [const TerminalLine(text: AppStrings.terminalWelcome)],
+      ),
+    );
   }
 
   void _onClosed(TerminalClosed event, Emitter<TerminalState> emit) {
@@ -44,11 +44,13 @@ class TerminalBloc extends Bloc<TerminalEvent, TerminalState> {
     final newHistory = [...state.commandHistory, cmd];
 
     if (cmd.toLowerCase() == 'clear') {
-      emit(state.copyWith(
-        outputLines: [],
-        commandHistory: newHistory,
-        historyIndex: -1,
-      ));
+      emit(
+        state.copyWith(
+          outputLines: [],
+          commandHistory: newHistory,
+          historyIndex: -1,
+        ),
+      );
       return;
     }
 
@@ -58,11 +60,13 @@ class TerminalBloc extends Bloc<TerminalEvent, TerminalState> {
       if (result.response.isNotEmpty) TerminalLine(text: result.response),
     ];
 
-    emit(state.copyWith(
-      outputLines: newLines,
-      commandHistory: newHistory,
-      historyIndex: -1,
-    ));
+    emit(
+      state.copyWith(
+        outputLines: newLines,
+        commandHistory: newHistory,
+        historyIndex: -1,
+      ),
+    );
 
     if (result.shouldDownload) {
       final uri = Uri.parse(AppAssets.resumeUrl);
@@ -74,4 +78,3 @@ class TerminalBloc extends Bloc<TerminalEvent, TerminalState> {
     }
   }
 }
-

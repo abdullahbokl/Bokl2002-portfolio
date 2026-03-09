@@ -58,15 +58,11 @@ class _TerminalOutputState extends State<TerminalOutput> {
                 children: [
                   TextSpan(
                     text: AppStrings.terminalPrompt,
-                    style: codeStyle.copyWith(
-                      color: AppColors.accentGreen,
-                    ),
+                    style: codeStyle.copyWith(color: AppColors.accentGreen),
                   ),
                   TextSpan(
                     text: line.text,
-                    style: codeStyle.copyWith(
-                      color: AppColors.textPrimary,
-                    ),
+                    style: codeStyle.copyWith(color: AppColors.textPrimary),
                   ),
                 ],
               ),
@@ -84,4 +80,3 @@ class _TerminalOutputState extends State<TerminalOutput> {
     );
   }
 }
-

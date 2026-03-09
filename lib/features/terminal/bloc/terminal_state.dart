@@ -1,8 +1,5 @@
 class TerminalLine {
-  const TerminalLine({
-    required this.text,
-    this.isCommand = false,
-  });
+  const TerminalLine({required this.text, this.isCommand = false});
 
   final String text;
   final bool isCommand;
@@ -35,4 +32,3 @@ class TerminalState {
     );
   }
 }
-
