@@ -15,17 +15,17 @@ class SkillsSection extends StatelessWidget {
     final columns = context.isDesktop
         ? 3
         : context.isTablet
-            ? 2
-            : 1;
+        ? 2
+        : 1;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           AppStrings.skillsSectionTitle,
-          style: AppTextStyles.h2(context).copyWith(
-            color: context.accent.accent,
-          ),
+          style: AppTextStyles.h2(
+            context,
+          ).copyWith(color: context.accent.accent),
         ),
         const SizedBox(height: 32),
         EqualHeightGrid(
@@ -38,5 +38,3 @@ class SkillsSection extends StatelessWidget {
     );
   }
 }
-
-

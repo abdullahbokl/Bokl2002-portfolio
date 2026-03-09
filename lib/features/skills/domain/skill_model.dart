@@ -23,4 +23,3 @@ class SkillCategory {
   final IconData icon;
   final List<Skill> skills;
 }
-

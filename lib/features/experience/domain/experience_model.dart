@@ -19,4 +19,3 @@ class ExperienceModel {
   final bool isLeadership;
   final bool isEducation;
 }
-
